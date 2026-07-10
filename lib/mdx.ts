@@ -7,6 +7,7 @@ const POSTS_DIR = path.join(process.cwd(), "content/posts");
 export interface PostFrontmatter {
   title: string;
   date: string;
+  category?: string;
   tags: string[];
   description: string;
 }
@@ -28,6 +29,8 @@ export function getAllSlugs(): string[] {
 export function getPostBySlug(slug: string): Post {
   const normalizedSlug = slug.normalize("NFC");
 
+  // 실제 디스크의 파일명과 정규화 형태가 다를 수 있으므로,
+  // 디렉토리를 스캔해서 정규화 후 일치하는 파일을 찾는다.
   const files = fs.existsSync(POSTS_DIR) ? fs.readdirSync(POSTS_DIR) : [];
   const matchedFile = files.find(
     (file) =>
