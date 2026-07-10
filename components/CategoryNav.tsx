@@ -4,7 +4,6 @@ const CATEGORIES = [
   { label: "전체", value: undefined },
   { label: "AI", value: "AI" },
   { label: "정보", value: "정보" },
-  { label: "게임", value: "게임" },
 ];
 
 export default function CategoryNav({
